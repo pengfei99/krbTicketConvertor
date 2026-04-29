@@ -1,24 +1,12 @@
 # krbTicketConvertor
 
-The objective of this project is 
-1. to get a kerberos ticket with tool such as [rubeus](https://github.com/ghostpack/rubeus).
-2. to convert a kerberos ticket from format `.kirbi` to MIT Kerberos ccache file. 
+This folder shows the first attempt of the implementation with C#, because the tool `rubeus`, https://github.com/ghostpack/rubeus
 
-## Get a delegated TGT
-
-The first step is to get a TGT. We use a tool called `rubeus`, https://github.com/ghostpack/rubeus
-
-
-### tgtdeleg
-
-The tgtdeleg using @gentilkiwi's Kekeo trick (tgt::deleg) that abuses the Kerberos GSS-API to retrieve a usable TGT for the current user without needing elevation on the host. AcquireCredentialsHandle() is used to get a handle to the current user's Kerberos security credentials, and InitializeSecurityContext() with the `ISC_REQ_DELEGATE` flag and a target `SPN of HOST/DC.domain.com` to prepare a fake delegate context to send to the DC. This results in an AP-REQ in the GSS-API output that contains a KRB_CRED in the authenticator checksum. The service ticket session key is extracted from the local Kerberos cache and is used to decrypt the KRB_CRED in the authenticator, resulting in a usable TGT `.kirbi`.
-
-If automatic target/domain extraction is failing, a known SPN of a service configured with unconstrained delegation can be specified with /target:SPN.
-
+is implemented with C#.
 
 ## Dev env
 
-This project use `.NET Framework 4.8 Developer Pack`. Because for the windows server 2019, `4.8.1` is not supported.
+This project use `.NET Framework 4.8 Developer Pack`. Because for the Windows server 2019, `4.8.1` is not supported.
 
 To build the dev env, I use `.Net 8.0 SDK`. Because, it’s the most stable "long-term" version that includes the CLI.
 
@@ -26,7 +14,7 @@ To build the dev env, I use `.Net 8.0 SDK`. Because, it’s the most stable "lon
 > You need admin right to install it, and you need to restart after installation.
 > after your installation, you should find the `MSBuild.exe` under `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\`
 
-> You can use the vscode extension `.net install tool`(this extention will be install automatically after your install C# Dev Kit) to install the `.Net 8.0 SDK`. 
+> You can use the VS Code extension `.net install tool`(this extension will be installed automatically after your install C# Dev Kit) to install the `.Net 8.0 SDK`. 
 > after your installation, you should find the folder under `C:\Program Files\dotnet\`.
 
 
