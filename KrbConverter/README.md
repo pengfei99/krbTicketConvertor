@@ -4,6 +4,8 @@ This folder shows the first attempt of the implementation with C#, because the t
 
 is implemented with C#.
 
+
+> `rubeus` is consider as a virus by windows defender. S
 ## Dev env
 
 This project use `.NET Framework 4.8 Developer Pack`. Because for the Windows server 2019, `4.8.1` is not supported.
