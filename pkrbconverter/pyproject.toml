@@ -1,0 +1,37 @@
+[project]
+name = "pkrbconverter"
+version = "0.1.0"
+description = "This tool can convert kerberos ticket of format .kirbi to standard MIT CCACHE format"
+readme = "README.md"
+requires-python = ">=3.11"
+
+authors = [
+    { name = "Pengfei Liu", email = "pengfei.liu@casd.eu" }
+]
+license = { text = "MIT" }
+
+keywords = ["kerberos", "ccache", ]
+
+dependencies = ["pyasn1", "minikerberos","asn1crypto", "typer"
+]
+
+[project.optional-dependencies]
+# Development dependencies (install with: pip install -e ".[dev]")
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0", # Code formatter
+    "isort>=5.12", # Import sorter
+]
+
+[project.scripts]
+# This allows the user to run 'convert-tgt' directly in the terminal
+convert-tgt = "krb.main:main"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
